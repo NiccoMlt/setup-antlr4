@@ -1,0 +1,18 @@
+name: Self check
+
+on: [push]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup ANTLR4
+        id: setup-antlr4
+        uses: ./
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 8
+      - name: Check if binary is available
+        run: |
+          java -jar ${Antlr4ToolPath} -version
