@@ -9,5 +9,5 @@ Example:
 ```yaml
 steps:
 - uses: actions/checkout@v2
-- uses: NiccoMlt/setup-antlr4@v0.0.1
+- uses: NiccoMlt/setup-antlr4@v0.0.2
 ```

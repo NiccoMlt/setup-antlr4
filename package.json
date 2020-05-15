@@ -1,6 +1,6 @@
 {
   "name": "setup-antlr4",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "Setup ANTLR 4 action",
   "main": "lib/main.js",
@@ -20,7 +20,8 @@
   "keywords": [
     "actions",
     "setup",
-    "antlr"
+    "antlr",
+    "antlr4"
   ],
   "author": {
     "name": "Niccolò Maltoni",
