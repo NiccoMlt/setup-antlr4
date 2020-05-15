@@ -7,15 +7,17 @@ const VERSION = '4.8'
 
 export async function getAntlr(): Promise<void> {
   let toolPath: string = tc.find(TOOL_NAME, VERSION)
+  const toolFile = `antlr-${VERSION}-complete.jar`
 
   if (toolPath) {
     core.debug(`Tool found in cache ${toolPath}`)
   } else {
     core.debug(`Downloading ANTLR ${VERSION} from official site`)
     const antlr4 = await tc.downloadTool(`https://www.antlr.org/download/antlr-${VERSION}-complete.jar`)
-    toolPath = await tc.cacheFile(antlr4, `antlr-${VERSION}-complete.jar`, TOOL_NAME, VERSION)
+    toolPath = await tc.cacheFile(antlr4, toolFile, TOOL_NAME, VERSION)
   }
 
-  core.exportVariable('Antlr4ToolPath', toolPath)
-  core.addPath(path.join(toolPath, 'bin'))
+  const antlr4ToolPath = path.join(toolPath, toolFile)
+  core.exportVariable('Antlr4ToolPath', antlr4ToolPath)
+  core.addPath(toolPath)
 }
