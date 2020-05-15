@@ -94,6 +94,7 @@ typings/
 .DS_Store
 Thumbs.db
 
-# Ignore built ts files
+# Ignore generated files
 __tests__/runner/*
+.jest/runner/*
 lib/**/*

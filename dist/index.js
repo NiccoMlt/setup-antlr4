@@ -1260,6 +1260,25 @@ exports.debug = debug; // for test
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -1269,19 +1288,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = __importDefault(__webpack_require__(470));
-const installer_1 = __webpack_require__(749);
+const core = __importStar(__webpack_require__(470));
+const installer = __importStar(__webpack_require__(749));
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield installer_1.getAntlr();
+            yield installer.getAntlr();
         }
         catch (error) {
-            core_1.default.setFailed(error);
+            core.setFailed(error);
         }
     });
 }
@@ -4586,6 +4602,25 @@ module.exports = require("fs");
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -4595,29 +4630,26 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getAntlr = void 0;
-const core_1 = __importDefault(__webpack_require__(470));
-const path_1 = __importDefault(__webpack_require__(622));
-const tool_cache_1 = __importDefault(__webpack_require__(533));
+const core = __importStar(__webpack_require__(470));
+const path = __importStar(__webpack_require__(622));
+const tc = __importStar(__webpack_require__(533));
 const TOOL_NAME = 'antlr4';
 const VERSION = '4.8';
 function getAntlr() {
     return __awaiter(this, void 0, void 0, function* () {
-        let toolPath = tool_cache_1.default.find(TOOL_NAME, VERSION);
+        let toolPath = tc.find(TOOL_NAME, VERSION);
         if (toolPath) {
-            core_1.default.debug(`Tool found in cache ${toolPath}`);
+            core.debug(`Tool found in cache ${toolPath}`);
         }
         else {
-            core_1.default.debug(`Downloading ANTLR ${VERSION} from official site`);
-            const antlr4 = yield tool_cache_1.default.downloadTool(`https://www.antlr.org/download/antlr-${VERSION}-complete.jar`);
-            toolPath = yield tool_cache_1.default.cacheFile(antlr4, `antlr-${VERSION}-complete.jar`, TOOL_NAME, VERSION);
+            core.debug(`Downloading ANTLR ${VERSION} from official site`);
+            const antlr4 = yield tc.downloadTool(`https://www.antlr.org/download/antlr-${VERSION}-complete.jar`);
+            toolPath = yield tc.cacheFile(antlr4, `antlr-${VERSION}-complete.jar`, TOOL_NAME, VERSION);
         }
-        core_1.default.exportVariable('Antlr4ToolPath', toolPath);
-        core_1.default.addPath(path_1.default.join(toolPath, 'bin'));
+        core.exportVariable('Antlr4ToolPath', toolPath);
+        core.addPath(path.join(toolPath, 'bin'));
     });
 }
 exports.getAntlr = getAntlr;

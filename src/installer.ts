@@ -1,12 +1,12 @@
-import core from '@actions/core'
-import path from 'path'
-import tc from '@actions/tool-cache'
+import * as core from '@actions/core'
+import * as path from 'path'
+import * as tc from '@actions/tool-cache'
 
 const TOOL_NAME = 'antlr4'
 const VERSION = '4.8'
 
 export async function getAntlr(): Promise<void> {
-  let toolPath: string | null | undefined = tc.find(TOOL_NAME, VERSION)
+  let toolPath: string = tc.find(TOOL_NAME, VERSION)
 
   if (toolPath) {
     core.debug(`Tool found in cache ${toolPath}`)
