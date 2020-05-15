@@ -6,6 +6,7 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: Setup ANTLR4
         id: setup-antlr4
         uses: ./
