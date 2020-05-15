@@ -1,5 +1,5 @@
 import core from '@actions/core'
-import {getAntlr} from './installer'
+import { getAntlr } from './installer'
 
 async function run(): Promise<void> {
   try {
