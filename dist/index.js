@@ -1291,10 +1291,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
 const installer = __importStar(__webpack_require__(749));
+const TOOL_NAME = 'antlr4';
+const VERSION = '4.8';
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield installer.getAntlr();
+            yield installer.getAntlr(TOOL_NAME, VERSION);
         }
         catch (error) {
             core.setFailed(error);
@@ -4635,21 +4637,20 @@ exports.getAntlr = void 0;
 const core = __importStar(__webpack_require__(470));
 const path = __importStar(__webpack_require__(622));
 const tc = __importStar(__webpack_require__(533));
-const TOOL_NAME = 'antlr4';
-const VERSION = '4.8';
-function getAntlr() {
+function getAntlr(toolName, version) {
     return __awaiter(this, void 0, void 0, function* () {
-        let toolPath = tc.find(TOOL_NAME, VERSION);
-        const toolFile = `antlr-${VERSION}-complete.jar`;
+        let toolPath = tc.find(toolName, version);
+        const file = `antlr-${version}-complete.jar`;
+        const downloadPath = `https://www.antlr.org/download/${file}`;
         if (toolPath) {
-            core.debug(`Tool found in cache ${toolPath}`);
+            core.info(`Tool found in cache ${toolPath}`);
         }
         else {
-            core.debug(`Downloading ANTLR ${VERSION} from official site`);
-            const antlr4 = yield tc.downloadTool(`https://www.antlr.org/download/antlr-${VERSION}-complete.jar`);
-            toolPath = yield tc.cacheFile(antlr4, toolFile, TOOL_NAME, VERSION);
+            core.info(`Downloading ANTLR ${version} from official site: ${downloadPath}`);
+            const antlr4 = yield tc.downloadTool(downloadPath);
+            toolPath = yield tc.cacheFile(antlr4, file, toolName, version);
         }
-        const antlr4ToolPath = path.join(toolPath, toolFile);
+        const antlr4ToolPath = path.join(toolPath, file);
         core.exportVariable('Antlr4ToolPath', antlr4ToolPath);
         core.addPath(toolPath);
     });
