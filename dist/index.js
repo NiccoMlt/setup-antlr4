@@ -4637,7 +4637,7 @@ exports.getAntlr = void 0;
 const core = __importStar(__webpack_require__(470));
 const path = __importStar(__webpack_require__(622));
 const tc = __importStar(__webpack_require__(533));
-function getAntlr(toolName, version) {
+function getAntlr(toolName, version, envVar = 'Antlr4ToolPath') {
     return __awaiter(this, void 0, void 0, function* () {
         let toolPath = tc.find(toolName, version);
         const file = `antlr-${version}-complete.jar`;
@@ -4649,9 +4649,11 @@ function getAntlr(toolName, version) {
             core.info(`Downloading ANTLR ${version} from official site: ${downloadPath}`);
             const antlr4 = yield tc.downloadTool(downloadPath);
             toolPath = yield tc.cacheFile(antlr4, file, toolName, version);
+            core.info(`Tool stored in ${toolPath} and added to PATH`);
+            core.info(`It is possible to access it via ${envVar} environment variable`);
         }
         const antlr4ToolPath = path.join(toolPath, file);
-        core.exportVariable('Antlr4ToolPath', antlr4ToolPath);
+        core.exportVariable(envVar, antlr4ToolPath);
         core.addPath(toolPath);
     });
 }

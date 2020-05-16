@@ -1,6 +1,6 @@
 {
   "name": "setup-antlr4",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "description": "Setup ANTLR 4 action",
   "main": "lib/main.js",
