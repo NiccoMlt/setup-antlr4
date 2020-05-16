@@ -29,20 +29,20 @@ You can simply add your own script like explained in the [official documentation
 java -cp "$Antlr4ToolPath:$CLASSPATH" org.antlr.v4.Tool $@
 ```
 
-`grun` (I see no point of having a GUI tool in CI, but whatever...):
+`grun`:
 ```bash
 #!/bin/sh
-java -cp "$Antlr4ToolPath:$CLASSPATH" org.antlr.v4.gui.TestRig $@
+java -cp ".:$Antlr4ToolPath:$CLASSPATH" org.antlr.v4.gui.TestRig $@
 ```
 
 `antlr4.bat`:
 ```batch
-java -cp "%$Antlr4ToolPath%;%CLASSPATH%" org.antlr.v4.Tool %*
+java -cp "%Antlr4ToolPath%;%CLASSPATH%" org.antlr.v4.Tool %*
 ```
 
 `grun.bat`:
 ```batch
-java -cp "%$Antlr4ToolPath%;%CLASSPATH%" org.antlr.v4.gui.TestRig %*
+java -cp ".:%Antlr4ToolPath%;%CLASSPATH%" org.antlr.v4.gui.TestRig %*
 ```
 
 `antlr4.ps1`:
@@ -52,7 +52,7 @@ java -cp "$Env:Antlr4ToolPath$([System.IO.Path]::PathSeparator)$Env:CLASSPATH" o
 
 `grun.ps1`:
 ```powershell
-java -cp "$Env:Antlr4ToolPath$([System.IO.Path]::PathSeparator)$Env:CLASSPATH" org.antlr.v4.gui.TestRig $args
+java -cp ".$([System.IO.Path]::PathSeparator)$Env:Antlr4ToolPath$([System.IO.Path]::PathSeparator)$Env:CLASSPATH" org.antlr.v4.gui.TestRig $args
 ```
 
 In a future version, I will probably add also these scripts to PATH.
