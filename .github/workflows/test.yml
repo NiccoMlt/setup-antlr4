@@ -1,28 +1,24 @@
-name: "build-test"
-on: # rebuild any PRs and main branch changes
+name: "Test"
+on:
   pull_request:
   push:
     branches:
       - master
-      - 'releases/*'
 
 jobs:
-  build: # make sure build/ci work properly
-    runs-on: ubuntu-latest
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+      runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
-      - run: |
-          yarn install
-          yarn all
-  test: # make sure the action works on a clean machine without building
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ./
+      - name: Use this action
+        uses: ./
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
           java-version: 8
-      - name: Check if binary is available
+      - name: Check if JAR executes correctly
         run: |
-          java -jar ${Antlr4ToolPath} -version
+          java -jar ${Antlr4ToolPath}
