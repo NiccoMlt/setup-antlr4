@@ -42,7 +42,7 @@ java -cp "%Antlr4ToolPath%;%CLASSPATH%" org.antlr.v4.Tool %*
 
 `grun.bat`:
 ```batch
-java -cp ".:%Antlr4ToolPath%;%CLASSPATH%" org.antlr.v4.gui.TestRig %*
+java -cp ".;%Antlr4ToolPath%;%CLASSPATH%" org.antlr.v4.gui.TestRig %*
 ```
 
 `antlr4.ps1`:
