@@ -3,7 +3,8 @@
 ![Test action](https://github.com/NiccoMlt/setup-antlr4/workflows/Test%20action/badge.svg)
 
 This action pulls complete ANTLR 4.8 jar and defines `Antlr4ToolPath` environment variable pointing to it.
-Some tools (i.e. [Antlr4BuildTasks](https://github.com/kaby76/Antlr4BuildTasks)) require this kind of configuration.
+Some tools (i.e. [Antlr4BuildTasks](https://github.com/kaby76/Antlr4BuildTasks)) require this kind of configuration;
+for this kind of usage, it also declares the required `JAVA_EXEC` variable if `JAVA_EXEC` is available.
 
 ## Usage:
 
@@ -11,7 +12,7 @@ Example:
 ```yaml
 steps:
 - uses: actions/checkout@v2
-- uses: NiccoMlt/setup-antlr4@v0.0.3
+- uses: NiccoMlt/setup-antlr4@v0.0.4
 ```
 
 You probably also want to add `actions/setup-java` to run the jar correctly.
