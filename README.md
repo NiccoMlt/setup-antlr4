@@ -4,7 +4,7 @@
 
 This action pulls complete ANTLR 4.8 jar and defines `Antlr4ToolPath` environment variable pointing to it.
 Some tools (i.e. [Antlr4BuildTasks](https://github.com/kaby76/Antlr4BuildTasks)) require this kind of configuration;
-for this kind of usage, it also declares the required `JAVA_EXEC` variable if `JAVA_EXEC` is available.
+for this kind of usage, it also declares the required `JAVA_EXEC` variable if `JAVA_HOME` is available.
 
 ## Usage:
 
