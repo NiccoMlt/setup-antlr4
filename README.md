@@ -12,7 +12,7 @@ Example:
 ```yaml
 steps:
 - uses: actions/checkout@v2
-- uses: NiccoMlt/setup-antlr4@v0.0.4
+- uses: NiccoMlt/setup-antlr4@v0.0.5
 ```
 
 You probably also want to add `actions/setup-java` to run the jar correctly.

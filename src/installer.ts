@@ -5,7 +5,7 @@ import * as tc from '@actions/tool-cache'
 export async function getAntlr(
   toolName: 'antlr' | 'antlr4',
   version: string,
-  envVar: string = 'Antlr4ToolPath'
+  envVar = 'Antlr4ToolPath'
 ): Promise<void> {
   let toolPath: string = tc.find(toolName, version)
   const file = `antlr-${version}-complete.jar`
