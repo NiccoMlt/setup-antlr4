@@ -9,10 +9,11 @@ for this kind of usage, it also declares the required `JAVA_EXEC` variable if `J
 ## Usage:
 
 Example:
+
 ```yaml
 steps:
 - uses: actions/checkout@v2
-- uses: NiccoMlt/setup-antlr4@v0.0.5
+- uses: NiccoMlt/setup-antlr4@v0.0.6
 ```
 
 You probably also want to add `actions/setup-java` to run the jar correctly.
@@ -25,33 +26,39 @@ The action also adds the jar in PATH, but this is pretty much useless currently.
 You can simply add your own script like explained in the [official documentation](https://github.com/antlr/antlr4/blob/master/doc/getting-started.md):
 
 `antlr4`:
+
 ```bash
 #!/bin/sh
 java -cp "$Antlr4ToolPath:$CLASSPATH" org.antlr.v4.Tool $@
 ```
 
 `grun`:
+
 ```bash
 #!/bin/sh
 java -cp ".:$Antlr4ToolPath:$CLASSPATH" org.antlr.v4.gui.TestRig $@
 ```
 
 `antlr4.bat`:
+
 ```batch
 java -cp "%Antlr4ToolPath%;%CLASSPATH%" org.antlr.v4.Tool %*
 ```
 
 `grun.bat`:
+
 ```batch
 java -cp ".;%Antlr4ToolPath%;%CLASSPATH%" org.antlr.v4.gui.TestRig %*
 ```
 
 `antlr4.ps1`:
+
 ```powershell
 java -cp "$Env:Antlr4ToolPath$([System.IO.Path]::PathSeparator)$Env:CLASSPATH" org.antlr.v4.Tool $args
 ```
 
 `grun.ps1`:
+
 ```powershell
 java -cp ".$([System.IO.Path]::PathSeparator)$Env:Antlr4ToolPath$([System.IO.Path]::PathSeparator)$Env:CLASSPATH" org.antlr.v4.gui.TestRig $args
 ```

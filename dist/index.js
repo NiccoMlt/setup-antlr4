@@ -1411,6 +1411,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core = __importStar(__webpack_require__(470));
 const path = __importStar(__webpack_require__(622));
 const installer = __importStar(__webpack_require__(749));
+const fs = __importStar(__webpack_require__(747));
 const TOOL_NAME = 'antlr4';
 const VERSION = '4.8';
 function run() {
@@ -1421,7 +1422,13 @@ function run() {
             const javaExecVar = 'JAVA_EXEC';
             const javaExec = process.env[javaExecVar];
             if (!javaExec && javaHome) {
-                const javaBin = path.join(javaHome, 'bin', 'java');
+                let javaBin = path.join(javaHome, 'bin', 'java');
+                try {
+                    yield fs.promises.access(javaBin);
+                }
+                catch (error) {
+                    javaBin = `${javaBin}.exe`;
+                }
                 core.exportVariable(javaExecVar, javaBin);
                 core.info(`Exporting ${javaExecVar} variable with reference to java binary: ${javaBin}`);
             }

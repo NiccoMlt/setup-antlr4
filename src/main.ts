@@ -1,6 +1,7 @@
 import * as core from '@actions/core'
 import * as path from 'path'
 import * as installer from './installer'
+import * as fs from 'fs'
 
 const TOOL_NAME = 'antlr4'
 const VERSION = '4.8'
@@ -12,7 +13,12 @@ async function run(): Promise<void> {
     const javaExecVar = 'JAVA_EXEC'
     const javaExec = process.env[javaExecVar]
     if (!javaExec && javaHome) {
-      const javaBin = path.join(javaHome, 'bin', 'java')
+      let javaBin = path.join(javaHome, 'bin', 'java')
+      try {
+        await fs.promises.access(javaBin)
+      } catch (error) {
+        javaBin = `${javaBin}.exe`
+      }
       core.exportVariable(javaExecVar, javaBin)
       core.info(`Exporting ${javaExecVar} variable with reference to java binary: ${javaBin}`)
     } else {
